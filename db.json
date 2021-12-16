@@ -1,0 +1,304 @@
+{
+  "resources": [
+    {
+      "state": "live",
+      "fqdn": "ACVHSGBEXTP0010.int.oracleindustry.com",
+      "datacenter": "AC",
+      "ip": "",
+      "role": "extract",
+      "capabilities": [],
+      "processPool": [""],
+      "domainAccount": "WDS0/wds0.extractsvc"
+    },
+    {
+      "state": "build",
+      "fqdn": "acvhsgbextp0020.int.oracleindustry.com",
+      "datacenter": "AC",
+      "ip": "",
+      "role": "extract",
+      "capabilities": [],
+      "processPool": [""],
+      "domainAccount": "WDS0/wds0.extractsvc"
+    },
+    {
+      "state": "live",
+      "fqdn": "acvhsgbextp0030.int.oracleindustry.com",
+      "datacenter": "AC",
+      "ip": "",
+      "role": "extract",
+      "capabilities": [],
+      "processPool": [""],
+      "domainAccount": "WDS0/wds0.extractsvc"
+    },
+    {
+      "state": "live",
+      "fqdn": "acvhsgbextp0040.int.oracleindustry.com",
+      "datacenter": "AC",
+      "ip": "",
+      "role": "extract",
+      "capabilities": [],
+      "processPool": [""],
+      "domainAccount": "WDS0/wds0.extractsvc"
+    },
+    {
+      "state": "live",
+      "fqdn": "acvhsgbextp0050.int.oracleindustry.com",
+      "datacenter": "AC",
+      "ip": "",
+      "role": "extract",
+      "capabilities": [],
+      "processPool": [""],
+      "domainAccount": "WDS0/wds0.extractsvc"
+    },
+    {
+      "state": "decomm",
+      "fqdn": "mmppfwdexp001.mm.webcrf.net",
+      "datacenter": "MM",
+      "ip": "",
+      "role": "extract",
+      "capabilities": [""],
+      "processPool": [""],
+      "domainAccount": "MM0/extractsvc"
+    },
+    {
+      "state": "build",
+      "fqdn": "mmpmrkexp001.mm.webcrf.net",
+      "datacenter": "MM",
+      "ip": "",
+      "role": "extract",
+      "capabilities": [""],
+      "processPool": [""],
+      "domainAccount": "MM0/extractsvc"
+    },
+    {
+      "state": "build",
+      "fqdn": "mmvhsgbextp0010.mm.webcrf.net",
+      "datacenter": "MM",
+      "ip": "",
+      "role": "extract",
+      "capabilities": [""],
+      "processPool": [""],
+      "domainAccount": "MM0/extractsvc"
+    },
+    {
+      "state": "live",
+      "fqdn": "mmvhsgbextp801.mm.webcrf.net",
+      "datacenter": "MM",
+      "ip": "",
+      "role": "extract",
+      "capabilities": [""],
+      "processPool": [""],
+      "domainAccount": "MM0/extractsvc"
+    },
+    {
+      "state": "live",
+      "fqdn": "mmvhsgbextp0020.int.oracleindustry.com",
+      "datacenter": "MM",
+      "ip": "",
+      "role": "extract",
+      "capabilities": [""],
+      "processPool": [""],
+      "domainAccount": "WDS0/wds0.extractsvc"
+    },
+    {
+      "state": "build",
+      "fqdn": "mmvhsgbextp0030.mm.webcrf.net",
+      "datacenter": "MM",
+      "ip": "",
+      "role": "extract",
+      "capabilities": [""],
+      "processPool": [""],
+      "domainAccount": "MM0/extractsvc"
+    },
+    {
+      "state": "live",
+      "fqdn": "mmvhsgbextp0040.mm.webcrf.net",
+      "datacenter": "MM",
+      "ip": "",
+      "role": "extract",
+      "capabilities": [""],
+      "processPool": [""],
+      "domainAccount": "MM0/extractsvc"
+    },
+    {
+      "state": "test",
+      "fqdn": "mmvhsgbextp0050.mm.webcrf.net",
+      "datacenter": "MM",
+      "ip": "",
+      "role": "extract",
+      "capabilities": [""],
+      "processPool": [""],
+      "domainAccount": "MM0/extractsvc"
+    },
+    {
+      "state": "test",
+      "fqdn": "mmvhsgbextp0060.mm.webcrf.net",
+      "datacenter": "MM",
+      "ip": "",
+      "role": "extract",
+      "capabilities": [""],
+      "processPool": [""],
+      "domainAccount": "wds0/wds0.extractsvc"
+    },
+    {
+      "state": "test",
+      "fqdn": "mmvhsgbextp0070.mm.webcrf.net",
+      "datacenter": "MM",
+      "ip": "",
+      "role": "extract",
+      "capabilities": [""],
+      "processPool": [""],
+      "domainAccount": "MM0/extractsvc"
+    },
+    {
+      "state": "live",
+      "fqdn": "mmvhsgbextp0100.int.oracleindustry.com",
+      "datacenter": "MM",
+      "ip": "",
+      "role": "extract",
+      "capabilities": [""],
+      "processPool": [""],
+      "domainAccount": "WDS0/wds0.extractsvc"
+    },
+    {
+      "state": "live",
+      "fqdn": "mmvhsgbextp0101.int.oracleindustry.com",
+      "datacenter": "MM",
+      "ip": "",
+      "role": "extract",
+      "capabilities": [""],
+      "processPool": [""],
+      "domainAccount": "WDS0/wds0.extractsvc"
+    },
+    {
+      "state": "build",
+      "fqdn": "mmvhsgbextp0103.mm.webcrf.net",
+      "datacenter": "MM",
+      "ip": "",
+      "role": "extract",
+      "capabilities": [""],
+      "processPool": [""],
+      "domainAccount": "WDS0/wds0.extractsvc"
+    },
+    {
+      "state": "live",
+      "fqdn": "mmvhsgbextp0104.int.oracleindustry.com",
+      "datacenter": "MM",
+      "ip": "",
+      "role": "extract",
+      "capabilities": [""],
+      "processPool": [""],
+      "domainAccount": "WDS0/wds0.extractsvc"
+    },
+    {
+      "state": "live",
+      "fqdn": "mmvhsgbextp0105.int.oracleindustry.com",
+      "datacenter": "MM",
+      "ip": "",
+      "role": "extract",
+      "capabilities": [""],
+      "processPool": [""],
+      "domainAccount": "WDS0/wds0.extractsvc"
+    },
+    {
+      "state": "live",
+      "fqdn": "mmvhsgbextp0710.int.oracleindustry.com",
+      "datacenter": "MM",
+      "ip": "",
+      "role": "extract",
+      "capabilities": [""],
+      "processPool": [""],
+      "domainAccount": "WDS0/wds0.extractsvc"
+    },
+    {
+      "state": "live",
+      "fqdn": "mmvhsgbextp0720.int.oracleindustry.com",
+      "datacenter": "MM",
+      "ip": "",
+      "role": "extract",
+      "capabilities": [""],
+      "processPool": [""],
+      "domainAccount": "WDS0/wds0.extractsvc"
+    },
+    {
+      "state": "live",
+      "fqdn": "mmvhsgbextp0740.int.oracleindustry.com",
+      "datacenter": "MM",
+      "ip": "",
+      "role": "extract",
+      "capabilities": [""],
+      "processPool": [""],
+      "domainAccount": "WDS0/wds0.extractsvc"
+    },
+    {
+      "state": "live",
+      "fqdn": "mmvhsgbextp0750.int.oracleindustry.com",
+      "datacenter": "MM",
+      "ip": "",
+      "role": "extract",
+      "capabilities": [""],
+      "processPool": [""],
+      "domainAccount": "WDS0/wds0.extractsvc"
+    },
+    {
+      "state": "live",
+      "fqdn": "mmvhsgbextp0820.int.oracleindustry.com",
+      "datacenter": "MM",
+      "ip": "",
+      "role": "extract",
+      "capabilities": [""],
+      "processPool": [""],
+      "domainAccount": "WDS0/wds0.extractsvc"
+    },
+    {
+      "state": "live",
+      "fqdn": "mmvhsgbextp0850.int.oracleindustry.com",
+      "datacenter": "MM",
+      "ip": "",
+      "role": "extract",
+      "capabilities": [""],
+      "processPool": [""],
+      "domainAccount": "WDS0/wds0.extractsvc"
+    },
+    {
+      "state": "live",
+      "fqdn": "mmvhsgbextp0860.int.oracleindustry.com",
+      "datacenter": "MM",
+      "ip": "",
+      "role": "extract",
+      "capabilities": [""],
+      "processPool": [""],
+      "domainAccount": "WDS0/wds0.extractsvc"
+    },
+    {
+      "state": "live",
+      "fqdn": "mmvhsgbextp0870.int.oracleindustry.com",
+      "datacenter": "MM",
+      "ip": "",
+      "role": "extract",
+      "capabilities": [""],
+      "processPool": [""],
+      "domainAccount": "WDS0/wds0.extractsvc"
+    },
+    {
+      "state": "standby",
+      "fqdn": "acvhsgbexsp0020.int.oracleindustry.com",
+      "datacenter": "AC",
+      "ip": "",
+      "role": "scheduler",
+      "capabilities": [""],
+      "processPool": [""],
+      "domainAccount": ""
+    },
+    {
+      "state": "live",
+      "fqdn": "mmvhsgbexsp0020.int.oracleindustry.com",
+      "datacenter": "MM",
+      "ip": "",
+      "role": "scheduler",
+      "capabilities": [""],
+      "processPool": [""],
+      "domainAccount": ""
+    }
+  ]
+}
