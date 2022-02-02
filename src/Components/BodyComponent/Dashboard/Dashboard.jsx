@@ -22,6 +22,12 @@ import UserOverviewComponent from "./UserOverviewComponent";
 import ListComponent from "./ListComponent";
 import { GetPost, GetUser } from "../../../utils/blogRequest";
 import { useState } from "react";
+import { motion } from "framer-motion";
+import {
+  pageVariants,
+  pageTransition,
+  pageStyle,
+} from "../../Header/pageTransitions";
 
 export default function Dashboard() {
   const classes = useStyles();
@@ -109,54 +115,63 @@ export default function Dashboard() {
   }, []);
 
   return (
-    <Box>
-      {/*section title
+    <motion.div
+      variants={pageVariants}
+      transition={pageTransition}
+      initial="initial"
+      animate="in"
+      exit="out"
+      style={pageStyle}
+    >
+      <Box>
+        {/*section title
               section card
               section graph
               section Posts
           */}
-      <PageHeader label="Dashboard" pageTitle="blog Overview" />
-      <Grid container spacing={2}>
-        {DisplayData.map((item, index) => (
-          <Grid item key={index} xs={6} sm={3}>
-            <Card>
-              <CardContent className={classes.cardContent}>
-                <canvas
-                  id={item.label}
-                  className={classes.displayCardGraph}
-                ></canvas>
-                <Typography variant="body2" className={classes.cardLabel}>
-                  {item.label}
-                </Typography>
-                <Typography
-                  variant="h5"
-                  component="h6"
-                  className={classes.cardTitle}
-                >
-                  {item.value}
-                </Typography>
-                <Typography
-                  component="p"
-                  style={{ textAlign: "center", marginBottom: "0px" }}
-                >
-                  <Button
-                    size="small"
-                    className={classes.ratioButton}
-                    startIcon={item.icon}
-                    style={{
-                      color: item.label[0] === "P" ? green[600] : red[500],
-                    }}
+        <PageHeader label="Dashboard" pageTitle="Extracts Summary" />
+        <Grid container spacing={2}>
+          {DisplayData.map((item, index) => (
+            <Grid item key={index} xs={6} sm={3}>
+              <Card>
+                <CardContent className={classes.cardContent}>
+                  <canvas
+                    id={item.label}
+                    className={classes.displayCardGraph}
+                  ></canvas>
+                  <Typography variant="body2" className={classes.cardLabel}>
+                    {item.label}
+                  </Typography>
+                  <Typography
+                    variant="h5"
+                    component="h6"
+                    className={classes.cardTitle}
                   >
-                    {item.iconLabel}
-                  </Button>
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-        ))}
-      </Grid>
-      <UserOverviewComponent />
-      <ListComponent posts={post} users={user} />
-    </Box>
+                    {item.value}
+                  </Typography>
+                  <Typography
+                    component="p"
+                    style={{ textAlign: "center", marginBottom: "0px" }}
+                  >
+                    <Button
+                      size="small"
+                      className={classes.ratioButton}
+                      startIcon={item.icon}
+                      style={{
+                        color: item.label[0] === "P" ? green[600] : red[500],
+                      }}
+                    >
+                      {item.iconLabel}
+                    </Button>
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+        <UserOverviewComponent />
+        <ListComponent posts={post} users={user} />
+      </Box>
+    </motion.div>
   );
 }
