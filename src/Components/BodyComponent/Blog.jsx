@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -13,6 +13,8 @@ import Badge from "@mui/material/Badge";
 import Chip from "@mui/material/Chip";
 import ListItem from "@mui/material/ListItem";
 import { PageHeader } from "../Common/CommonComponent";
+import { GetAppOutlined, AddCircleOutlined } from "@material-ui/icons";
+import MaterialTable from "material-table";
 
 import { motion } from "framer-motion";
 import {
@@ -23,6 +25,7 @@ import {
 
 import { useServersQuery } from "../../features/serversApi";
 import { flexbox } from "@mui/system";
+import { useEffect } from "react";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -45,8 +48,80 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 export default function Blog() {
   const { data, error, isLoading, isFetching, isSuccess } = useServersQuery();
-  const handleClick = (e) => console.log(e.target + " clicked");
-  const handleDelete = (e) => console.log(e.target + " Deleted");
+  const [tableData, setTableData] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:4000/resources")
+      .then((resp) => resp.json())
+      .then((resp) => setTableData(resp));
+
+    // setTableData(editable);
+  }, []);
+
+  console.log("table data:" + JSON.stringify(tableData));
+
+  const handleClick = (e) => console.log(e.target.innerText + " clicked");
+  const handleDelete = (e) => console.log(e.target.innerText + " Deleted");
+
+  const columns = [
+    {
+      title: "Server",
+      field: "fqdn",
+      sorting: false,
+      cellStyle: { color: "blue" },
+    },
+    {
+      title: "Status",
+      field: "state",
+      filterPlaceholder: "Status",
+      lookup: { live: "Active", build: "Inactive", decomm: "Decomm" },
+      width: "10%",
+      export: false,
+      render: (rowData) => (
+        <div
+          style={{
+            backgroundColor:
+              rowData.state === "live" ? "darkgreen" : "orangered",
+            width: "70px",
+            padding: "6px",
+            borderRadius: "3px",
+            color: "white",
+            textAlign: "center",
+            fontWeight: "bold",
+          }}
+        >
+          {rowData.state === "live" ? "Active" : "Inactive"}
+        </div>
+      ),
+    },
+    {
+      title: "Running",
+      field: "running",
+      sorting: false,
+      filtering: false,
+      cellStyle: { color: "blue" },
+      render: (rowData) => (
+        <div
+          style={{
+            display: "flex",
+          }}
+        >
+          {rowData.running &&
+            rowData.running.map((ext) => (
+              <Chip
+                label={ext}
+                onClick={handleClick}
+                onDelete={handleDelete}
+                variant="outlined"
+                size="small"
+                color="primary"
+                sx={{ margin: "10px" }}
+              ></Chip>
+            ))}
+        </div>
+      ),
+    },
+  ];
   return (
     <motion.div
       variants={pageVariants}
@@ -57,189 +132,52 @@ export default function Blog() {
       style={pageStyle}
     >
       <PageHeader label="Servers" pageTitle="Extracts Processing Servers" />
-      {isLoading && <CircularProgress />}
-      {error && <h2>Something went wrong as always, is this a Demo?</h2>}
 
-      {isSuccess && (
-        <TableContainer component={Paper} sx={{ width: "96%" }}>
-          <Table aria-label="customized table">
-            <TableHead>
-              <TableRow>
-                <StyledTableCell>
-                  <Grid container>
-                    <Grid item xs={4}>
-                      <Badge variant="dot">
-                        <Typography variant="h6">Server</Typography>
-                      </Badge>
-                    </Grid>
-                  </Grid>
-                </StyledTableCell>
-                <StyledTableCell>
-                  <Grid container>
-                    <Grid item xs={2}>
-                      <Typography variant="h6">Status</Typography>
-                    </Grid>
-                  </Grid>
-                </StyledTableCell>
-
-                <StyledTableCell align="left">
-                  <Grid container>
-                    <Grid item xs={6}>
-                      <Typography variant="h6">Extracts Running</Typography>
-                    </Grid>
-                  </Grid>
-                </StyledTableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {data.map(
-                (server) =>
-                  server.state === "live" && (
-                    <StyledTableRow key={server.fqdn}>
-                      <StyledTableCell align="left" component="th" scope="row">
-                        <Grid container>
-                          <Grid item xs={8}>
-                            <Typography variant="caption">
-                              {server.fqdn.toUpperCase().split(".")[0]}
-                            </Typography>
-                          </Grid>
-                        </Grid>
-                      </StyledTableCell>
-                      <StyledTableCell align="left" component="th" scope="row">
-                        {server.state === "live" ? (
-                          <Grid container>
-                            <Grid item xs={2}>
-                              <FiberManualRecordIcon
-                                style={{
-                                  border: "#eaeef0 6px solid",
-                                  borderRadius: "50%",
-                                  color: "lightgreen",
-                                  cursor: "pointer",
-                                  background: "#eaeef0",
-                                  boxShadow:
-                                    "-8px -8px 15px rgba(255,255,255,1) , 8px 8px 15px rgba(0,0,0,0.2), inset 3px 3px 5px rgba(0,0,0,0.1), inset -1px -1px 5px  rgba(255,255,255,1)",
-                                }}
-                              />
-                            </Grid>
-                          </Grid>
-                        ) : (
-                          <Grid container>
-                            <Grid item xs={2}>
-                              <FiberManualRecordIcon
-                                style={{
-                                  border: "#eaeef0 6px solid",
-                                  borderRadius: "50%",
-                                  color: "#852015",
-                                  cursor: "pointer",
-                                  background: "#eaeef0",
-                                  boxShadow:
-                                    "-8px -8px 15px rgba(255,255,255,1) , 8px 8px 15px rgba(0,0,0,0.2), inset 3px 3px 5px rgba(0,0,0,0.1), inset -1px -1px 5px  rgba(255,255,255,1)",
-                                }}
-                              />
-                            </Grid>
-                          </Grid>
-                        )}
-                      </StyledTableCell>
-                      <StyledTableCell align="left" sx={{ textAlign: "wrap" }}>
-                        <Grid container>
-                          <Grid item xs zeroMinWidth>
-                            {server.state === "live" && (
-                              <div
-                                style={{
-                                  display: "flex",
-                                  justifyContent: "space-between",
-                                }}
-                              >
-                                <Chip
-                                  label="IQVHU-RDE-ACSV"
-                                  onClick={handleClick}
-                                  onDelete={handleDelete}
-                                  variant="outlined"
-                                  size="small"
-                                  color="primary"
-                                  sx={{ margin: "10px" }}
-                                ></Chip>
-
-                                <Chip
-                                  label="CLA037-RDE-SASD"
-                                  onClick={handleClick}
-                                  onDelete={handleDelete}
-                                  variant="outlined"
-                                  color="primary"
-                                  size="small"
-                                  sx={{ margin: "10px" }}
-                                ></Chip>
-
-                                <Chip
-                                  label="BLUEHORIZON-TSE-EXPDP"
-                                  onClick={handleClick}
-                                  onDelete={handleDelete}
-                                  variant="outlined"
-                                  size="small"
-                                  color="success"
-                                  component={motion.div}
-                                  whileTap={{ scale: 0.7 }}
-                                  sx={{ margin: "10px" }}
-                                ></Chip>
-
-                                <Chip
-                                  label="IQVHU-RDE-ACSV"
-                                  onClick={handleClick}
-                                  onDelete={handleDelete}
-                                  variant="outlined"
-                                  size="small"
-                                  color="primary"
-                                  component={motion.div}
-                                  whileTap={{ scale: 0.7 }}
-                                  sx={{ margin: "10px" }}
-                                ></Chip>
-
-                                <Chip
-                                  label="CLA037-RDE-SASD"
-                                  onClick={handleClick}
-                                  onDelete={handleDelete}
-                                  variant="outlined"
-                                  color="error"
-                                  size="small"
-                                  component={motion.div}
-                                  whileTap={{ scale: 0.7 }}
-                                  sx={{ margin: "10px" }}
-                                ></Chip>
-
-                                <Chip
-                                  label="BLUEHORIZON-TSE-EXPDP"
-                                  onClick={handleClick}
-                                  onDelete={handleDelete}
-                                  variant="outlined"
-                                  size="small"
-                                  color="success"
-                                  component={motion.div}
-                                  whileTap={{ scale: 0.7 }}
-                                  sx={{ margin: "10px" }}
-                                ></Chip>
-
-                                <Chip
-                                  label="IQVHU-RDE-ACSV"
-                                  onClick={handleClick}
-                                  onDelete={handleDelete}
-                                  variant="outlined"
-                                  size="small"
-                                  color="primary"
-                                  component={motion.div}
-                                  whileTap={{ scale: 0.7 }}
-                                  sx={{ margin: "10px" }}
-                                ></Chip>
-                              </div>
-                            )}
-                          </Grid>
-                        </Grid>
-                      </StyledTableCell>
-                    </StyledTableRow>
-                  )
-              )}
-            </TableBody>
-          </Table>
-        </TableContainer>
+      {tableData && (
+        <MaterialTable
+          columns={columns}
+          data={tableData}
+          title="Active Extracts"
+          actions={[
+            {
+              icon: () => <GetAppOutlined />,
+              tooltip: "Click me fast",
+              onClick: (e, data) => console.log(data),
+            },
+          ]}
+          onSelectionChange={(data) => {
+            console.log(data);
+          }}
+          options={{
+            searchAutoFocus: true,
+            searchFieldVariant: "outlined",
+            filtering: true,
+            paging: false,
+            pageSizeOptions: [2, 5, 10, 15, 20, 25, 50, 100],
+            pageSize: 5,
+            paginationType: "stepped",
+            showFirstLastPageButtons: false,
+            paginationPosition: "bottom",
+            exportButton: true,
+            exportAllData: true,
+            exportFileName: "TableData_" + new Date().toISOString(),
+            addRowPosition: "first",
+            actionsColumnIndex: -1,
+            selection: true,
+            showSelectAllCheckbox: false,
+            showTextRowsSelected: false,
+            grouping: true,
+            columnsButton: true,
+            rowStyle: (data, index) =>
+              index % 2 == 0 ? { background: "#f5f5f5" } : null,
+            headerStyle: {
+              background: "#3f51b5",
+              fontStyle: "italic",
+              color: "white",
+            },
+            icons: { Add: () => <AddCircleOutlined /> },
+          }}
+        ></MaterialTable>
       )}
     </motion.div>
   );

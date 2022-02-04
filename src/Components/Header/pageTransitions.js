@@ -23,7 +23,7 @@ export const pageTransition = {
 
 export const pageStyle = {
   position: "absolute",
-  width: "90%",
+  width: "85%",
   marginTop: "70px",
   marginBottom: "40px",
   marginRight: "20px",
