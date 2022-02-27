@@ -84,6 +84,16 @@ export default function Link() {
               let totalCount = 0;
               url += "?_page=" + (query.page + 1);
               url += "&_limit=" + query.pageSize;
+              url += query.search ? "&q=" + query.search : "";
+              if (query.filters.length > 0) {
+                query.filters.forEach((element) => {
+                  console.log("Element=" + JSON.stringify(element));
+                  console.log("Element key=" + element.column.title);
+                  console.log("Element value=" + element.value);
+                  url += "&" + element.column.title + "_like=" + element.value;
+                });
+              }
+
               fetch(url)
                 .then((response) => {
                   if (!response.ok) {
